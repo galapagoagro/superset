@@ -40,8 +40,10 @@ class CustomAuthDBView(AuthDBView):
 
         try:
             cred = credentials.Certificate(superset.app.config.get('FIREBASE_SERVICE_ACCOUNT_FILE'))
-            fb_app = firebase_admin.initialize_app(cred, {'databaseURL': superset.app.config.get('FIREBASE_DEFAULT_DATABASE_URL')})
+            fb_url = superset.app.config.get('FIREBASE_DEFAULT_DATABASE_URL')
+            fb_app = firebase_admin.initialize_app(cred, {'databaseURL': fb_url}, name=fb_url)
         except ValueError as e:
+            fb_app = firebase_admin.get_app(name=fb_url)
             print(e)
         
         uid = validate_token(token)

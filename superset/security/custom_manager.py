@@ -52,7 +52,7 @@ class CustomAuthDBView(AuthDBView):
             return "Invalid user"
 
         user = self.appbuilder.sm.find_user(
-            username=uid
+            email=user_data["correo"]
         )
 
         if not user:

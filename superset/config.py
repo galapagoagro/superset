@@ -1263,8 +1263,9 @@ SQLALCHEMY_DISPLAY_TEXT = "SQLAlchemy docs"
 
 # Firebase authentication variables
 TOKEN_LOGIN = False
-FIREBASE_SERVICE_ACCOUNT_FILE = ""
 DEFAULT_WELCOME_DASHBOARD = ""
+FIREBASE_SERVICE_ACCOUNT_FILE = ""
+FIREBASE_DEFAULT_DATABASE_URL = ""
 
 # -------------------------------------------------------------------
 # *                WARNING:  STOP EDITING  HERE                    *

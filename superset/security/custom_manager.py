@@ -40,7 +40,7 @@ class CustomAuthDBView(AuthDBView):
 
         try:
             cred = credentials.Certificate(superset.app.config.get('FIREBASE_SERVICE_ACCOUNT_FILE'))
-            fb_app = firebase_admin.initialize_app(cred)
+            fb_app = firebase_admin.initialize_app(cred, {'databaseURL': superset.app.config.get('FIREBASE_DEFAULT_DATABASE_URL')})
         except ValueError as e:
             print(e)
         

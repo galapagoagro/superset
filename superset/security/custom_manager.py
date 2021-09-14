@@ -29,7 +29,7 @@ def get_user_data(uid):
 
 class CustomAuthDBView(AuthDBView):
     try:
-        cred = credentials.Certificate('/Users/dramos/Repos/analytics/firebase/appfinca.json')
+        cred = credentials.Certificate(superset.app.config.get('FIREBASE_SERVICE_ACCOUNT_FILE'))
         firebase_admin.initialize_app(cred)
     except ValueError as e:
         print(e)
@@ -37,7 +37,7 @@ class CustomAuthDBView(AuthDBView):
     login_template = 'appbuilder/general/security/login_db.html'
     @expose('/login/', methods=['GET', 'POST'])
     def login(self):
-        if superset.app.config.get('LOGIN_WITH_TOKEN') is False:
+        if superset.app.config.get('TOKEN_LOGIN') is False:
             return super(CustomAuthDBView, self).login()
 
         token = request.values.get('token')

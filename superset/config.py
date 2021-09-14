@@ -1261,6 +1261,11 @@ MENU_HIDE_USER_INFO = False
 SQLALCHEMY_DOCS_URL = "https://docs.sqlalchemy.org/en/13/core/engines.html"
 SQLALCHEMY_DISPLAY_TEXT = "SQLAlchemy docs"
 
+# Firebase authentication variables
+TOKEN_LOGIN = False
+FIREBASE_SERVICE_ACCOUNT_FILE = ""
+DEFAULT_WELCOME_DASHBOARD = ""
+
 # -------------------------------------------------------------------
 # *                WARNING:  STOP EDITING  HERE                    *
 # -------------------------------------------------------------------

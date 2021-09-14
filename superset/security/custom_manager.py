@@ -28,12 +28,6 @@ def get_user_data(uid):
 
 
 class CustomAuthDBView(AuthDBView):
-    try:
-        cred = credentials.Certificate(superset.app.config.get('FIREBASE_SERVICE_ACCOUNT_FILE'))
-        firebase_admin.initialize_app(cred)
-    except ValueError as e:
-        print(e)
-    
     login_template = 'appbuilder/general/security/login_db.html'
     @expose('/login/', methods=['GET', 'POST'])
     def login(self):
@@ -45,6 +39,12 @@ class CustomAuthDBView(AuthDBView):
             #return super(CustomAuthDBView, self).login()
             return "Token missing"
 
+        try:
+            cred = credentials.Certificate(superset.app.config.get('FIREBASE_SERVICE_ACCOUNT_FILE'))
+            firebase_admin.initialize_app(cred)
+        except ValueError as e:
+            print(e)
+        
         uid = validate_token(token)
         if uid is None:
             return "Invalid token"

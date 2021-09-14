@@ -19,8 +19,8 @@ def validate_token(token):
         print(e)
         return None
 
-def get_user_data(uid):
-    user_ref = db.reference('/usuarios/{}'.format(uid))
+def get_user_data(uid, fb_app):
+    user_ref = db.reference('/usuarios/{}'.format(uid), app=fb_app)
     user_data = user_ref.get()
     if user_data is not None and 'organizacion' not in user_data:
         user_data['organizacion'] = 'Sin organizacion'
@@ -40,14 +40,14 @@ class CustomAuthDBView(AuthDBView):
 
         try:
             cred = credentials.Certificate(superset.app.config.get('FIREBASE_SERVICE_ACCOUNT_FILE'))
-            firebase_admin.initialize_app(cred)
+            fb_app = firebase_admin.initialize_app(cred)
         except ValueError as e:
             print(e)
         
         uid = validate_token(token)
         if uid is None:
             return "Invalid token"
-        user_data = get_user_data(uid)
+        user_data = get_user_data(uid, fb_app)
         if user_data is None:
             return "Invalid user"
 

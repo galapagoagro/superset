@@ -51,9 +51,13 @@ class CustomAuthDBView(AuthDBView):
         if user_data is None:
             return "Invalid user"
 
-        user = self.appbuilder.sm.find_user(
+        user_by_email = self.appbuilder.sm.find_user(
             email=user_data["correo"]
         )
+        user_by_username = self.appbuilder.sm.find_user(
+            username=uid
+        )
+        user = user_by_email or user_by_username
 
         if not user:
             user = self.appbuilder.sm.add_user(

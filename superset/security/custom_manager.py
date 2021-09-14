@@ -36,8 +36,7 @@ class CustomAuthDBView(AuthDBView):
 
         token = request.values.get('token')
         if token is None:
-            #return super(CustomAuthDBView, self).login()
-            return "Token missing"
+            return super(CustomAuthDBView, self).login()
 
         try:
             cred = credentials.Certificate(superset.app.config.get('FIREBASE_SERVICE_ACCOUNT_FILE'))

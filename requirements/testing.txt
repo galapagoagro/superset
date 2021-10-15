@@ -88,6 +88,8 @@ traitlets==5.0.5
     # via
     #   ipython
     #   matplotlib-inline
+typed-ast==1.4.3
+    # via astroid
 wcwidth==0.2.5
     # via prompt-toolkit
 websocket-client==1.2.0

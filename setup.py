@@ -68,12 +68,15 @@ setup(
         "bleach>=3.0.2, <4.0.0",
         "cachelib>=0.1.1,<0.2",
         "celery>=4.3.0, <5.0.0, !=4.4.1",
+        "certifi==2021.10.8",
+        "charset-normalizer==2.0.7",
         "click<8",
         "colorama",
         "croniter>=0.3.28",
         "cron-descriptor",
         "cryptography>=3.3.2",
         "deprecation>=2.1.0, <2.2.0",
+        "firebase-admin>=5.0.2",
         "flask>=1.1.0, <2.0.0",
         "flask-appbuilder>=3.3.2, <4.0.0",
         "flask-caching>=1.10.0",
@@ -109,8 +112,9 @@ setup(
         "sqlalchemy-utils>=0.36.6, <0.37",
         "sqlparse==0.3.0",  # PINNED! see https://github.com/andialbrecht/sqlparse/issues/562
         "tabulate==0.8.9",
-        "typing-extensions>=3.10, <4",  # needed to support Literal (3.8) and TypeGuard (3.10)
+        "typing-extensions==3.10.0.2",  # needed to support Literal (3.8) and TypeGuard (3.10)
         "wtforms-json",
+        "zipp==3.4.1",
     ],
     extras_require={
         "athena": ["pyathena>=1.10.8, <1.11"],

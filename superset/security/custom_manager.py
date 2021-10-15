@@ -79,14 +79,8 @@ class CustomAuthDBView(AuthDBView):
         redirect_url = superset.app.config.get(
              'DEFAULT_WELCOME_DASHBOARD'
         )
-        # with standalone = True, the menu panel is removed
-        standalone = str(request.args.get('standalone'))
 
-        return redirect(
-            redirect_url
-            + '?standalone='
-            + standalone
-        )
+        return redirect(redirect_url)
 
 
 class CustomSecurityManager(SupersetSecurityManager):

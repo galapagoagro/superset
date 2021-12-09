@@ -53,27 +53,22 @@ class CustomAuthDBView(AuthDBView):
         if user_data is None:
             return "Invalid user"
 
-        user_by_email = self.appbuilder.sm.find_user(
+        user = self.appbuilder.sm.find_user(
             email=user_data["correo"]
         )
-        user_by_username = self.appbuilder.sm.find_user(
-            username=uid
-        )
-        user = user_by_email or user_by_username
 
         if not user:
-            user = self.appbuilder.sm.add_user(
-                username=uid,
-                first_name=user_data["nombre"],
-                last_name=user_data["organizacion"],
-                email=user_data["correo"],
-                role=self.appbuilder.sm.find_role("Alpha"),
-                password = "test"
-            )
-        
-        if not user:
-            #return super(CustomAuthDBView, self).login()
-            return "User not found"
+            ## Default login window.
+            return super(CustomAuthDBView, self).login()
+            ## Code for signing in new users automatically
+            # user = self.appbuilder.sm.add_user(
+            #     username=uid,
+            #     first_name=user_data["nombre"],
+            #     last_name=user_data["organizacion"],
+            #     email=user_data["correo"],
+            #     role=self.appbuilder.sm.find_role("Alpha"),
+            #     password = "test"
+            # )
 
         login_user(user, remember=False)
         redirect_url = superset.app.config.get(

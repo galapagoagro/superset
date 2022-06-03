@@ -64,6 +64,7 @@ class DatasetMetricsPutSchema(Schema):
     metric_type = fields.String(allow_none=True, validate=Length(1, 32))
     d3format = fields.String(allow_none=True, validate=Length(1, 128))
     warning_text = fields.String(allow_none=True)
+    verbose_name = fields.String(allow_none=True, validate=Length(1, 255))
 
 
 class DatasetPostSchema(Schema):
